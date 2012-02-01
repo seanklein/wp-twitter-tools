@@ -32,6 +32,7 @@ class AKTT_Widget extends WP_Widget {
 			'count' => 5,
 			'include_rts' => 0,
 			'include_replies' => 0,
+			'include_follow' => 0,
 		);
 		foreach ($defaults as $k => $v) {
 			if (!isset($instance[$k])) {
@@ -77,6 +78,15 @@ class AKTT_Widget extends WP_Widget {
 	<input type="radio" name="<?php echo $this->get_field_name('include_replies'); ?>" id="<?php echo $this->get_field_id('include_replies_0'); ?>" value="0" <?php checked($instance['include_replies'], 0); ?> />
 	<label for="<?php echo $this->get_field_id('include_replies_0'); ?>"><?php _e('No', 'twitter-tools'); ?></label>
 </p>
+<p>
+	<?php _e('Include Follow Link?', 'twitter-tools'); ?>
+	&nbsp;
+	<input type="radio" name="<?php echo $this->get_field_name('include_follow'); ?>" id="<?php echo $this->get_field_id('include_follow_1'); ?>" value="1" <?php checked($instance['include_follow'], 1); ?> />
+	<label for="<?php echo $this->get_field_id('include_follow_1'); ?>"><?php _e('Yes', 'twitter-tools'); ?></label>
+	&nbsp;
+	<input type="radio" name="<?php echo $this->get_field_name('include_follow'); ?>" id="<?php echo $this->get_field_id('include_follow_0'); ?>" value="0" <?php checked($instance['include_follow'], 0); ?> />
+	<label for="<?php echo $this->get_field_id('include_follow_0'); ?>"><?php _e('No', 'twitter-tools'); ?></label>
+</p>
 <?php
 	}
 
@@ -91,6 +101,7 @@ class AKTT_Widget extends WP_Widget {
 		$instance['count'] = $count;
 		$instance['include_rts'] = (int) $new_instance['include_rts'];
 		$instance['include_replies'] = (int) $new_instance['include_replies'];
+		$instance['include_follow'] = (int) $new_instance['include_follow'];
 		return $instance;
 	}
 
